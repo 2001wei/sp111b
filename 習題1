@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+double function(double x) {
+    // 定義被積函數
+    return x * x;
+}
+
+double integrate(double a, double b, int n) {
+    // 梯形法則的積分函數
+    double h = (b - a) / n; // 切割區間
+    double sum = 0.0;
+
+    for (int i = 0; i < n; i++) {
+        double x1 = a + i * h;
+        double x2 = a + (i + 1) * h;
+        sum += (function(x1) + function(x2)) * h / 2.0;
+    }
+
+    return sum;
+}
+
+int main() {
+    double a = 0.0; // 積分下界
+    double b = 1.0; // 積分上界
+    int n = 10000; // 切割區間數量
+
+    double result = integrate(a, b, n);
+
+    printf("積分結果: %f\n", result);
+
+    return 0;
+}
